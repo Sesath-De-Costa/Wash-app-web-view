@@ -15,7 +15,6 @@ import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
-import {DeliverAgentComponent} from './view/deliver-agent/deliver-agent.component';
 import {UserComponent} from './view/user/user.component';
 import {RequestComponent} from './view/request/request.component';
 import {UserService} from './service/user.service';
@@ -24,6 +23,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatInputModule} from '@angular/material/input';
 // import {LayoutModule} from '@angular/cdk/layout';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
+import {ProcessesComponent} from './view/processes/processes.component';
+import {DeliverAgentsComponent} from './view/deliver-agents/deliver-agents.component';
 
 
 @NgModule({
@@ -31,10 +34,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AppComponent,
     DashboardComponent,
     NavigationComponent,
-    DeliverAgentComponent,
     UserComponent,
     RequestComponent,
-    LoginComponent
+    LoginComponent,
+    ProcessesComponent,
+    DeliverAgentsComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatInputModule,
     // LayoutModule,
     MatFormFieldModule,
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

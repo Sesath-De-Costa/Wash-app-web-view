@@ -1,0 +1,90 @@
+<div class="grid-container">
+  <h1 class="mat-h1">User Management</h1>
+  <mat-grid-list cols="2" rowHeight="435px">
+    <mat-grid-tile cols="1">
+      <mat-card class="user-card" fxLayout="column">
+        <mat-card-header>
+          <mat-card-title>
+            <button [matMenuTriggerFor]="menu" aria-label="Toggle menu" class="more-button" mat-icon-button>
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-md-6" fxLayoutAlign="stretch">
+              <mat-form-field class="form-content">
+                <input class="login-field" matInput placeholder="ID">
+              </mat-form-field>
+              <mat-form-field class="form-content">
+                <input class="login-field" matInput placeholder="First Name">
+              </mat-form-field>
+              <button class="form-button" mat-raised-button type="button">Save</button>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="form-content">
+                <input class="login-field" matInput placeholder="Last Name">
+              </mat-form-field>
+              <mat-form-field class="form-content">
+                <input class="login-field" matInput placeholder="NIC">
+              </mat-form-field>
+              <button class="form-button" mat-raised-button type="button">Update</button>
+              <mat-form-field class="form-content">
+                <mat-label>User Type</mat-label>
+                <mat-select [(value)]="selected">
+                  <mat-option value="ADMIN">admin</mat-option>
+                  <mat-option value="WORKER">worker</mat-option>
+                  <mat-option value="DELIVER-AGENT">deliver agent</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="form-content">
+                <input class="login-field" matInput placeholder="Mobile">
+              </mat-form-field>
+              <button class="form-button" mat-raised-button type="button">Delete</button>
+            </div>
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile cols="2">
+      <mat-card class="user-card" fxLayout="column">
+        <!--              <table class="mat-elevation-z8" mat-table>-->
+
+
+        <!--              </table>-->
+      </mat-card>
+
+      <!--      <table [dataSour="dataSource" class="mat-elevation-z8" mat-table>-->
+
+      <!--        <ng-container matColumnDef="position">-->
+      <!--          <th *matHeaderCellDef mat-header-cell> No.</th>-->
+      <!--          <td *matCellDef="let element" mat-cell> {{element.position}} </td>-->
+      <!--        </ng-container>-->
+
+      <!--        <ng-container matColumnDef="name">-->
+      <!--          <th *matHeaderCellDef mat-header-cell> Name</th>-->
+      <!--          <td *matCellDef="let element" mat-cell> {{element.name}} </td>-->
+      <!--        </ng-container>-->
+
+      <!--        <ng-container matColumnDef="weight">-->
+      <!--          <th *matHeaderCellDef mat-header-cell> Weight</th>-->
+      <!--          <td *matCellDef="let element" mat-cell> {{element.weight}} </td>-->
+      <!--        </ng-container>-->
+
+      <!--        <ng-container matColumnDef="symbol">-->
+      <!--          <th *matHeaderCellDef mat-header-cell> Symbol</th>-->
+      <!--          <td *matCellDef="let element" mat-cell> {{element.symbol}} </td>-->
+      <!--        </ng-container>-->
+
+      <!--        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>-->
+      <!--        <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>-->
+      <!--      </table>-->
+
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
