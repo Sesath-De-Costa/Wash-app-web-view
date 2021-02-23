@@ -1,0 +1,35 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false"
+               class="sidenav"
+               fixedInViewport>
+    <mat-toolbar><img src="favicon.ico"></mat-toolbar>
+    <mat-nav-list>
+      <a (click)="loadDashBoard()" mat-list-item>Dashboard</a>
+      <a (click)="loadUser()" mat-list-item>User Management</a>
+      <a (click)="loadRequest()" mat-list-item>Request Management</a>
+      <a (click)="loadProcesses()" mat-list-item>Processes</a>
+      <a (click)="loadDeliverAgents()" mat-list-item>Deliver Agents</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        type="button">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>The Wash App</span>
+    </mat-toolbar>
+    <!--add content here-->
+    <mat-toolbar class="mat-footer" color="primary" fxLayoutAlign="bottom" style="height:50px">
+      <div class="footer">
+        <small>Code licensed under an MIT-style License.</small>
+      </div>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>
