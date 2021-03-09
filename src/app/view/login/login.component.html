@@ -1,13 +1,17 @@
 <div fxFlexFill fxLayoutAlign="center center">
   <mat-card fxFlex="30">
     <mat-toolbar color="primary" style="border-radius:5px">Wash App Login</mat-toolbar>
-    <form fxLayout="column" fxLayoutAlign="stretch">
+    <form #frm="ngForm" (ngSubmit)="authenticate()" fxLayout="column" fxLayoutAlign="stretch">
       <mat-form-field>
-        <input class="login-field" matInput placeholder="Username">
+        <input #txtUsername #usernameModel="ngModel" [(ngModel)]="username" class="login-field" id="txt-username"
+               matInput
+               minlength="3" name="txt-username" pattern="[A-Za-z]" placeholder="Username">
       </mat-form-field>
 
       <mat-form-field>
-        <input class="login-field" matInput placeholder="Password" type="password">
+        <input #passwordModel="ngModel" #txtPassword [(ngModel)]="password" class="login-field" id="txt-password"
+               matInput minlength="8" name="txt-password" placeholder="Password"
+               type="password">
       </mat-form-field>
       <button mat-raised-button type="submit">Login</button>
     </form>

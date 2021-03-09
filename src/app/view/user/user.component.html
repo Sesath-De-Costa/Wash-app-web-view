@@ -18,72 +18,87 @@
           <div class="row">
             <div class="col-md-6" fxLayoutAlign="stretch">
               <mat-form-field class="form-content">
-                <input class="login-field" matInput placeholder="ID">
+                <input #id #idModel="ngModel" [(ngModel)]="idNo" class="login-field" matInput placeholder="ID">
               </mat-form-field>
               <mat-form-field class="form-content">
-                <input class="login-field" matInput placeholder="First Name">
+                <input #fName #firstNameModel="ngModel" [(ngModel)]="firstName" class="login-field" matInput
+                       minlength="3" placeholder="First Name" required>
+                <small *ngIf="firstNameModel.hasError('minlength') && firstNameModel.touched" [style.color]="'red'">
+                  First name should be at least 3 letters
+                </small>
               </mat-form-field>
-              <button class="form-button" mat-raised-button type="button">Save</button>
+              <button
+                (click)="saveUser()"
+                class="form-button" mat-raised-button
+                type="button">Save
+              </button>
             </div>
             <div class="col-md-6">
               <mat-form-field class="form-content">
-                <input class="login-field" matInput placeholder="Last Name">
+                <input #lName #lastNameModel="ngModel" [(ngModel)]="lastName" class="login-field" matInput
+                       minlength="3" placeholder="Last Name" required>
+                <small *ngIf="lastNameModel.hasError('minlength') && lastNameModel.touched" [style.color]="'red'">
+                  Last name should be at least 3 letters
+                </small>
               </mat-form-field>
               <mat-form-field class="form-content">
-                <input class="login-field" matInput placeholder="NIC">
+                <input #nic #nicModel="ngModel" [(ngModel)]="nicNo" class="login-field" matInput
+                       pattern="([0-9]{9}[vV]$)|([0-9]{11}[vV]$)"
+                       placeholder="NIC" required>
+                <small *ngIf="nicModel.hasError('pattern') && nicModel.touched" [style.color]="'red'">
+                  Invalid NIC
+                </small>
               </mat-form-field>
               <button class="form-button" mat-raised-button type="button">Update</button>
               <mat-form-field class="form-content">
                 <mat-label>User Type</mat-label>
-                <mat-select [(value)]="selected">
-                  <mat-option value="ADMIN">admin</mat-option>
-                  <mat-option value="WORKER">worker</mat-option>
+                <mat-select #uType #userTypeModel="ngModel" [(ngModel)]="userType" required>
+                  <mat-option value="USER">admin</mat-option>
+                  <mat-option value="WORKER">in-house-worker</mat-option>
                   <mat-option value="DELIVER-AGENT">deliver agent</mat-option>
                 </mat-select>
               </mat-form-field>
               <mat-form-field class="form-content">
-                <input class="login-field" matInput placeholder="Mobile">
+                <input #mobile #mobileModel="ngModel" [(ngModel)]="mobileNumber" class="login-field" matInput
+                       pattern="([0]{1}[1-9]{9}$)" placeholder="Mobile" required>
+                <small *ngIf="mobileModel.hasError('pattern') && mobileModel.touched" [style.color]="'red'">
+                  Invalid mobile number
+                </small>
               </mat-form-field>
               <button class="form-button" mat-raised-button type="button">Delete</button>
             </div>
-
           </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile cols="2">
-      <mat-card class="user-card" fxLayout="column">
-        <!--              <table class="mat-elevation-z8" mat-table>-->
+      <mat-card class="user-card" fxLayout="column" style="padding: 0px; overflow: auto!important;">
+        <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table style="overflow: auto;padding-left: 15px;padding-right: 15px" >
 
+          <ng-container matColumnDef="position">
+            <th *matHeaderCellDef mat-header-cell> No.</th>
+            <td *matCellDef="let element" mat-cell> {{element.position}} </td>
+          </ng-container>
 
-        <!--              </table>-->
+          <ng-container matColumnDef="name">
+            <th *matHeaderCellDef mat-header-cell> Name</th>
+            <td *matCellDef="let element" mat-cell> {{element.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="weight">
+            <th *matHeaderCellDef mat-header-cell> Weight</th>
+            <td *matCellDef="let element" mat-cell> {{element.weight}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="symbol">
+            <th *matHeaderCellDef mat-header-cell> Symbol</th>
+            <td *matCellDef="let element" mat-cell> {{element.symbol}} </td>
+          </ng-container>
+
+          <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+          <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+        </table>
       </mat-card>
-
-      <!--      <table [dataSour="dataSource" class="mat-elevation-z8" mat-table>-->
-
-      <!--        <ng-container matColumnDef="position">-->
-      <!--          <th *matHeaderCellDef mat-header-cell> No.</th>-->
-      <!--          <td *matCellDef="let element" mat-cell> {{element.position}} </td>-->
-      <!--        </ng-container>-->
-
-      <!--        <ng-container matColumnDef="name">-->
-      <!--          <th *matHeaderCellDef mat-header-cell> Name</th>-->
-      <!--          <td *matCellDef="let element" mat-cell> {{element.name}} </td>-->
-      <!--        </ng-container>-->
-
-      <!--        <ng-container matColumnDef="weight">-->
-      <!--          <th *matHeaderCellDef mat-header-cell> Weight</th>-->
-      <!--          <td *matCellDef="let element" mat-cell> {{element.weight}} </td>-->
-      <!--        </ng-container>-->
-
-      <!--        <ng-container matColumnDef="symbol">-->
-      <!--          <th *matHeaderCellDef mat-header-cell> Symbol</th>-->
-      <!--          <td *matCellDef="let element" mat-cell> {{element.symbol}} </td>-->
-      <!--        </ng-container>-->
-
-      <!--        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>-->
-      <!--        <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>-->
-      <!--      </table>-->
 
     </mat-grid-tile>
   </mat-grid-list>

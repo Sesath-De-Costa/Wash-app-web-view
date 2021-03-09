@@ -1,4 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {UserService} from '../../service/user.service';
+import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -6,16 +9,30 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  // loginForm: FormGroup;
   username = '';
   password = '';
+  @ViewChild('txtUsername')
+  txtUsername!: ElementRef;
+  @ViewChild('frm')
+  frmSignIn!: NgForm;
 
-  constructor() {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
-    // this.loginForm = new FormGroup({
-    //   email: new FormGroup('', [Validators.required, Validators.email]),
-    //   password: new FormGroup('', [Validators.required, Validators.minLength(8)])
+  }
+
+  authenticate(): void {
+    // this.userService.authenticate(this.username, this.password).subscribe(token => {
+    //   sessionStorage.setItem('token', token);
+    //   sessionStorage.setItem('username', this.username);
+    //   this.router.navigateByUrl('/dashboard');
+    // }, error => {
+    //   this.username = '';
+    //   this.password = '';
+    //   this.frmSignIn.reset();
+    //   (this.txtUsername.nativeElement as HTMLInputElement).focus();
+    // });
+    this.router.navigateByUrl('/home/dashboard');
   }
 }

@@ -20,23 +20,7 @@ export class NavigationComponent {
   constructor(private breakpointObserver: BreakpointObserver, private router: Router) {
   }
 
-  loadDashBoard(): void {
-    this.router.navigateByUrl('/dashboard');
-  }
-
-  loadUser(): void {
-    this.router.navigateByUrl('/user');
-  }
-
-  loadRequest(): void {
-    this.router.navigateByUrl('/request');
-  }
-
-  loadProcesses(): void {
-    this.router.navigateByUrl('/processes');
-  }
-
-  loadDeliverAgents(): void {
-    this.router.navigateByUrl('/deliver-agent');
+  loadUI(component: string): void {
+    this.router.navigate(['/home/' + component]).then();
   }
 }

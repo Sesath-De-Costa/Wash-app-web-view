@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -21,6 +21,7 @@ import {UserService} from './service/user.service';
 import {LoginComponent} from './view/login/login.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatInputModule} from '@angular/material/input';
+import {HttpClientModule} from '@angular/common/http';
 // import {LayoutModule} from '@angular/cdk/layout';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
@@ -58,7 +59,9 @@ import {DeliverAgentsComponent} from './view/deliver-agents/deliver-agents.compo
     // LayoutModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

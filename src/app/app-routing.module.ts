@@ -6,6 +6,7 @@ import {LoginComponent} from './view/login/login.component';
 import {UserComponent} from './view/user/user.component';
 import {RequestComponent} from './view/request/request.component';
 import {DeliverAgentsComponent} from './view/deliver-agents/deliver-agents.component';
+import {NavigationComponent} from './view/navigation/navigation.component';
 
 
 const routes: Routes = [
@@ -19,29 +20,35 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'user',
-    component: UserComponent,
-  },
-  {
-    path: 'request',
-    component: RequestComponent,
-  },
-  {
-    component: DashboardComponent,
-    path: 'dashboard',
-  },
-  {
-    component: ProcessesComponent,
-    path: 'processes'
-  },
-  {
-    component: DeliverAgentsComponent,
-    path: 'deliver-agent'
+    component: NavigationComponent,
+    path: 'home', children: [
+      {
+        path: 'user',
+        component: UserComponent,
+      },
+      {
+        path: 'request',
+        component: RequestComponent,
+      },
+      {
+        component: DashboardComponent,
+        path: 'dashboard',
+      },
+      {
+        component: ProcessesComponent,
+        path: 'processes'
+      },
+      {
+        component: DeliverAgentsComponent,
+        path: 'deliver-agent'
+      }
+    ]
   }
-  /*  {
-      path: '**',
-      component: NotFoundComponent
-    }*/
+  // ,
+  // {
+  //   path: '**',
+  //   component: NotFoundComponent
+  // }
 ];
 
 @NgModule({

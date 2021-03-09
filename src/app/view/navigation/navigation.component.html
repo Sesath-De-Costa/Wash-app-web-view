@@ -6,11 +6,11 @@
                fixedInViewport>
     <mat-toolbar><img src="favicon.ico"></mat-toolbar>
     <mat-nav-list>
-      <a (click)="loadDashBoard()" mat-list-item>Dashboard</a>
-      <a (click)="loadUser()" mat-list-item>User Management</a>
-      <a (click)="loadRequest()" mat-list-item>Request Management</a>
-      <a (click)="loadProcesses()" mat-list-item>Processes</a>
-      <a (click)="loadDeliverAgents()" mat-list-item>Deliver Agents</a>
+      <a (click)="loadUI('dashboard')" mat-list-item>Dashboard</a>
+      <a (click)="loadUI('user')" mat-list-item>User Management</a>
+      <a (click)="loadUI('request')" mat-list-item>Request Management</a>
+      <a (click)="loadUI('processes')" mat-list-item>Processes</a>
+      <a (click)="loadUI('deliver-agent')" mat-list-item>Deliver Agents</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -25,7 +25,7 @@
       </button>
       <span>The Wash App</span>
     </mat-toolbar>
-    <!--add content here-->
+    <router-outlet></router-outlet>
     <mat-toolbar class="mat-footer" color="primary" fxLayoutAlign="bottom" style="height:50px">
       <div class="footer">
         <small>Code licensed under an MIT-style License.</small>

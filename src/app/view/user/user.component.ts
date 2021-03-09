@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {UserService} from '../../service/user.service';
+import {Router} from '@angular/router';
+import {User} from '../../model/user';
 
 export interface PeriodicElement {
   name: string;
@@ -26,15 +29,27 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  userList: Array<User> = [];
+  idNo = 'Auto generated';
+  firstName = '';
+  lastName = '';
+  nicNo = '';
+  userType = 'ADMIN';
+  mobileNumber = '';
 
-  selected = 'ADMIN';
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 
-  constructor() {
+  constructor(public userService: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
+  }
+
+  saveUser(): void {
+    this.userService.saveUser(this.firstName, this.lastName, this.nicNo, this.userType, this.mobileNumber).subscribe(user => {
+      this.userList.push(user);
+    });
   }
 
 }
