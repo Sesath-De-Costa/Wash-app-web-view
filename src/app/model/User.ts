@@ -5,6 +5,9 @@ export class User {
               public nic: string,
               // public userType: UserType,
               public userType: string,
-              public mobile: string){
+              public mobile: string,
+              public username: string,
+              public password: string
+  ) {
   }
 }
