@@ -28,6 +28,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {ProcessesComponent} from './view/processes/processes.component';
 import {DeliverAgentsComponent} from './view/deliver-agents/deliver-agents.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import {DeliverAgentsComponent} from './view/deliver-agents/deliver-agents.compo
     MatSelectModule,
     MatTableModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatPaginatorModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

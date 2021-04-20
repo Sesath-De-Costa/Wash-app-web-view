@@ -7,6 +7,7 @@ import {UserComponent} from './view/user/user.component';
 import {RequestComponent} from './view/request/request.component';
 import {DeliverAgentsComponent} from './view/deliver-agents/deliver-agents.component';
 import {NavigationComponent} from './view/navigation/navigation.component';
+import {MainGuard} from './guard/main.guard';
 
 
 const routes: Routes = [
@@ -24,11 +25,11 @@ const routes: Routes = [
     path: 'home', children: [
       {
         path: 'user',
-        component: UserComponent,
+        component: UserComponent
       },
       {
         path: 'request',
-        component: RequestComponent,
+        component: RequestComponent
       },
       {
         component: DashboardComponent,
@@ -42,7 +43,8 @@ const routes: Routes = [
         component: DeliverAgentsComponent,
         path: 'deliver-agent'
       }
-    ]
+    ],
+    canActivate: [MainGuard]
   }
   // ,
   // {

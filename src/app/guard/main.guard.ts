@@ -13,8 +13,7 @@ export class MainGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = sessionStorage.getItem('token');
-    // return (token !== null ? true : this.router.createUrlTree(['/login']));
-    return this.router.createUrlTree(['/home']);
+    return ((token !== null && token.length > 0) ? true : this.router.createUrlTree(['/login']));
   }
 }
 

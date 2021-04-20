@@ -16,7 +16,7 @@
         </mat-card-header>
         <mat-card-content>
           <div class="row">
-            <div class="col-md-6" fxLayoutAlign="stretch">
+            <div class="col-md-6">
               <mat-form-field class="form-content">
                 <input #id #idModel="ngModel" [(ngModel)]="idNo" class="login-field" matInput placeholder="ID">
               </mat-form-field>
@@ -27,11 +27,7 @@
                   First name should be at least 3 letters
                 </small>
               </mat-form-field>
-              <button
-                (click)="saveUser()"
-                class="form-button" mat-raised-button
-                type="button">Save
-              </button>
+              <button (click)="saveUser()" class="form-button" mat-raised-button type="button">Save</button>
             </div>
             <div class="col-md-6">
               <mat-form-field class="form-content">
@@ -53,9 +49,9 @@
               <mat-form-field class="form-content">
                 <mat-label>User Type</mat-label>
                 <mat-select #uType #userTypeModel="ngModel" [(ngModel)]="userType" required>
-                  <mat-option value="USER">admin</mat-option>
-                  <mat-option value="WORKER">in-house-worker</mat-option>
-                  <mat-option value="DELIVER-AGENT">deliver agent</mat-option>
+                  <mat-option value="ADMIN">admin</mat-option>
+                  <mat-option value="USER">in-house-worker</mat-option>
+                  <mat-option value="DELIVERY_AGENT">deliver agent</mat-option>
                 </mat-select>
               </mat-form-field>
               <mat-form-field class="form-content">
@@ -66,6 +62,17 @@
                 </small>
               </mat-form-field>
               <button class="form-button" mat-raised-button type="button">Delete</button>
+              <mat-form-field class="form-content">
+                <mat-label>Username</mat-label>
+                <input #uName #usernameModel="ngModel" [(ngModel)]="username" class="login-field" matInput
+                       minlength="3" placeholder="Username" required>
+              </mat-form-field>
+              <mat-form-field class="form-content">
+                <mat-label>Password</mat-label>
+                <input #passwordModel="ngModel" #pword [(ngModel)]="password" class="login-field" matInput
+                       minlength="3" placeholder="Password" required>
+              </mat-form-field>
+              <button class="form-button" mat-raised-button type="reset">Clear</button>
             </div>
           </div>
         </mat-card-content>
@@ -73,31 +80,48 @@
     </mat-grid-tile>
     <mat-grid-tile cols="2">
       <mat-card class="user-card" fxLayout="column" style="padding: 0px; overflow: auto!important;">
-        <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table style="overflow: auto;padding-left: 15px;padding-right: 15px" >
+        <table [dataSource]="userList" class="mat-elevation-z8" mat-table
+               style="overflow: auto;padding-left: 15px;padding-right: 15px">
 
-          <ng-container matColumnDef="position">
-            <th *matHeaderCellDef mat-header-cell> No.</th>
-            <td *matCellDef="let element" mat-cell> {{element.position}} </td>
+          <ng-container matColumnDef="id">
+            <th *matHeaderCellDef mat-header-cell> ID</th>
+            <td *matCellDef="let user" mat-cell> {{user.id}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="name">
-            <th *matHeaderCellDef mat-header-cell> Name</th>
-            <td *matCellDef="let element" mat-cell> {{element.name}} </td>
+          <ng-container matColumnDef="firstName">
+            <th *matHeaderCellDef mat-header-cell> First Name</th>
+            <td *matCellDef="let user" mat-cell> {{user.firstName}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="weight">
-            <th *matHeaderCellDef mat-header-cell> Weight</th>
-            <td *matCellDef="let element" mat-cell> {{element.weight}} </td>
+          <ng-container matColumnDef="lastName">
+            <th *matHeaderCellDef mat-header-cell> Last Name</th>
+            <td *matCellDef="let user" mat-cell> {{user.lastName}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="symbol">
-            <th *matHeaderCellDef mat-header-cell> Symbol</th>
-            <td *matCellDef="let element" mat-cell> {{element.symbol}} </td>
+          <ng-container matColumnDef="nic">
+            <th *matHeaderCellDef mat-header-cell> NIC</th>
+            <td *matCellDef="let user" mat-cell> {{user.nic}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="mobile">
+            <th *matHeaderCellDef mat-header-cell> Mobile</th>
+            <td *matCellDef="let user" mat-cell> {{user.mobile}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="userType">
+            <th *matHeaderCellDef mat-header-cell> User Type</th>
+            <td *matCellDef="let user" mat-cell> {{user.userType}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="username">
+            <th *matHeaderCellDef mat-header-cell> Username</th>
+            <td *matCellDef="let user" mat-cell> {{user.username}} </td>
           </ng-container>
 
           <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
           <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
         </table>
+        <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons style="align-content: center"></mat-paginator>
       </mat-card>
 
     </mat-grid-tile>

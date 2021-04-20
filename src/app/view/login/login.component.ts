@@ -23,16 +23,21 @@ export class LoginComponent implements OnInit {
   }
 
   authenticate(): void {
-    // this.userService.authenticate(this.username, this.password).subscribe(token => {
-    //   sessionStorage.setItem('token', token);
-    //   sessionStorage.setItem('username', this.username);
-    //   this.router.navigateByUrl('/dashboard');
-    // }, error => {
-    //   this.username = '';
-    //   this.password = '';
-    //   this.frmSignIn.reset();
-    //   (this.txtUsername.nativeElement as HTMLInputElement).focus();
-    // });
-    this.router.navigateByUrl('/home/dashboard');
+    this.userService.authenticate(this.username, this.password).subscribe(token => {
+      sessionStorage.setItem('token', token);
+      console.log(this.username);
+      sessionStorage.setItem('username', this.username);
+      if (sessionStorage.getItem('token') != null) {
+        // @ts-ignore
+        if (sessionStorage.getItem('token').length > 0) {
+          this.router.navigateByUrl('/home/dashboard');
+        }
+      }
+    }, error => {
+      this.username = '';
+      this.password = '';
+      this.frmSignIn.reset();
+      (this.txtUsername.nativeElement as HTMLInputElement).focus();
+    });
   }
 }
